@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GASKINZ — Sourcing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --noir:#0A0A0B; --noir-2:#16161A; --noir-3:#22222A;
+  --parch:#F2ECDF; --parch-2:#E8E0CE; --parch-3:#D9CFB6;
+  --ink:#1A1A1F;
+  --pink:#f694b6; --pink-glow:#f8afc8;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --rule:rgba(10,10,11,.12);
+  --rule-inv:rgba(242,236,223,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parch);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--pink);color:var(--noir)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:var(--sans)}
+
+/* --- Layout --- */
+.wrap{max-width:1440px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.wrap{padding:0 20px}}
+
+/* --- Ticker --- */
+.ticker{background:var(--noir);color:var(--parch);overflow:hidden;white-space:nowrap;padding:11px 0}
+.ticker-track{display:inline-flex;gap:40px;animation:tick 60s linear infinite;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.ticker-track span{display:inline-flex;gap:40px}
+.up{color:var(--pink)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* --- Nav --- */
+.site-nav{position:sticky;top:0;z-index:100;background:var(--parch);border-bottom:1px solid var(--rule)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:15px 48px;gap:24px}
+.nav-logo{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.nav-logo em{font-style:italic}
+.nav-logo .dot{color:var(--pink)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.65;transition:opacity .15s}
+.nav-links a:hover,.nav-links a.active{opacity:1;color:var(--pink)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+@media(max-width:900px){.nav-links{display:none}.nav-inner{padding:14px 20px}}
+
+/* --- Buttons --- */
+.btn{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;border-radius:999px;border:1.5px solid var(--noir);background:var(--noir);color:var(--parch);display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:transform .15s,background .15s,color .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.pink{background:var(--pink);border-color:var(--pink);color:var(--noir)}
+.btn.pink:hover{background:var(--pink-glow);border-color:var(--pink-glow)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn.ghost:hover{background:var(--ink);color:var(--parch);border-color:var(--ink)}
+.btn.lg{padding:16px 28px;font-size:13px}
+
+/* --- Hero --- */
+.hero{background:var(--noir);color:var(--parch);padding:80px 0 0;overflow:hidden}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:pulse 1.4s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.hero-title{font-family:var(--serif);font-size:clamp(60px,10vw,168px);line-height:.88;letter-spacing:-.035em;font-weight:400}
+.hero-title em{font-style:italic;color:var(--pink)}
+.hero-right{padding-bottom:6px;display:flex;flex-direction:column;gap:22px}
+.hero-right p{font-size:16px;line-height:1.6;opacity:.78;max-width:44ch}
+.hero-steps{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule-inv);margin-top:8px}
+.step{display:flex;align-items:flex-start;gap:18px;padding:18px 20px;border-bottom:1px solid var(--rule-inv)}
+.step:last-child{border-bottom:none}
+.step-num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);flex-shrink:0;width:32px}
+.step-text{font-size:14px;line-height:1.5;opacity:.78}
+.step-text strong{color:var(--parch);opacity:1;font-weight:600}
+.hero-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule-inv);margin-top:56px;padding:14px 0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.45;flex-wrap:wrap;gap:10px}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+
+/* --- Form section --- */
+.form-section{padding:80px 0 100px}
+.form-grid{display:grid;grid-template-columns:5fr 7fr;gap:80px;align-items:start}
+.form-aside{position:sticky;top:96px;display:flex;flex-direction:column;gap:28px}
+.form-aside h2{font-family:var(--serif);font-size:clamp(36px,4vw,60px);line-height:.96;letter-spacing:-.02em;font-weight:400}
+.form-aside h2 em{font-style:italic;color:var(--pink)}
+.form-aside p{font-size:15px;line-height:1.6;opacity:.75;max-width:38ch}
+.aside-stat{border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-direction:column;gap:5px}
+.aside-stat .n{font-family:var(--serif);font-size:52px;line-height:.9;letter-spacing:-.02em}
+.aside-stat .n em{font-style:italic;color:var(--pink)}
+.aside-stat .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+.aside-email{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;border:1px solid var(--rule);padding:12px 16px;border-radius:999px}
+.aside-email .dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0}
+
+/* --- Form --- */
+.the-form{display:flex;flex-direction:column;gap:24px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+label span{color:var(--pink);opacity:1}
+input[type="text"],
+input[type="email"],
+select,
+textarea{
+  background:transparent;border:1px solid var(--rule);padding:14px 18px;
+  font-family:var(--sans);font-size:15px;color:var(--ink);outline:none;
+  transition:border-color .2s,background .2s;
+  border-radius:0;
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus{border-color:var(--pink);background:rgba(246,148,182,.04)}
+input::placeholder,textarea::placeholder{opacity:.38}
+textarea{resize:vertical;min-height:140px;line-height:1.55}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A1A1F' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.budget-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--rule)}
+.budget-opt{padding:16px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-right:1px solid var(--rule);transition:all .15s;text-align:center;user-select:none}
+.budget-opt:last-child{border-right:none}
+.budget-opt:hover{background:var(--parch-2)}
+.budget-opt.active{background:var(--noir);color:var(--parch)}
+.form-divider{height:1px;background:var(--rule)}
+.form-submit{display:flex;align-items:center;justify-content:space-between;padding-top:8px;gap:14px;flex-wrap:wrap}
+.form-note{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;opacity:.45}
+
+/* --- How it works --- */
+.how{background:var(--noir);color:var(--parch);padding:80px 0}
+.how h2{font-family:var(--serif);font-size:clamp(40px,5vw,72px);letter-spacing:-.02em;line-height:.94;font-weight:400;margin-bottom:56px}
+.how h2 em{font-style:italic;color:var(--pink)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule-inv)}
+.how-card{padding:32px 28px;border-right:1px solid var(--rule-inv)}
+.how-card:last-child{border-right:none}
+.how-n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--pink);margin-bottom:48px}
+.how-title{font-family:var(--serif);font-size:34px;line-height:1.05;letter-spacing:-.01em;margin-bottom:14px}
+.how-body{font-size:14px;line-height:1.6;opacity:.68}
+@media(max-width:768px){.how-grid{grid-template-columns:1fr}.how-card{border-right:none;border-bottom:1px solid var(--rule-inv)}.how-card:last-child{border-bottom:none}}
+
+/* --- Footer --- */
+footer{background:var(--noir-2);color:var(--parch);border-top:1px solid var(--rule-inv);padding:56px 0 36px}
+.footer-big{font-family:var(--serif);font-size:clamp(64px,11vw,192px);line-height:.88;letter-spacing:-.04em;font-weight:400}
+.footer-big em{font-style:italic}
+.footer-big .dot{color:var(--pink)}
+.footer-meta{display:flex;justify-content:space-between;border-top:1px solid var(--rule-inv);margin-top:40px;padding-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.5;flex-wrap:wrap;gap:12px}
+
+@media(max-width:860px){
+  .form-grid{grid-template-columns:1fr;gap:48px}
+  .form-aside{position:static}
+  .field-row{grid-template-columns:1fr}
+  .budget-row{grid-template-columns:1fr 1fr}
+  .wrap{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>
+      <span class="up">● SOURCING · TELL US THE DREAM</span>
+      <span style="opacity:.45">— WE FIND IT</span>
+      <span class="up">ANY BAG · ANY ERA · ANY BUDGET</span>
+      <span style="opacity:.45">— AUTHENTICATED IN 36HRS</span>
+      <span class="up">● LONDON-BASED · FAST SHIP</span>
+      <span style="opacity:.45">— SPRING ARCHIVE · DROP 01 · LIVE NOW</span>
+      <span class="up">● GASKINZ SOURCING SERVICE</span>
+      <span style="opacity:.45">— IF IT EXISTS, WE FIND IT</span>
+    </span>
+    <span>
+      <span class="up">● SOURCING · TELL US THE DREAM</span>
+      <span style="opacity:.45">— WE FIND IT</span>
+      <span class="up">ANY BAG · ANY ERA · ANY BUDGET</span>
+      <span style="opacity:.45">— AUTHENTICATED IN 36HRS</span>
+      <span class="up">● LONDON-BASED · FAST SHIP</span>
+      <span style="opacity:.45">— SPRING ARCHIVE · DROP 01 · LIVE NOW</span>
+      <span class="up">● GASKINZ SOURCING SERVICE</span>
+      <span style="opacity:.45">— IF IT EXISTS, WE FIND IT</span>
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="GASKINZ Drop 015.html" class="nav-logo">Gaskin<em>z</em><span class="dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="GASKINZ Drop 015.html#drop">The Drop</a></li>
+      <li><a href="GASKINZ Drop 015.html#waitlist">Waitlist</a></li>
+      <li><a href="Sourcing.html" class="active">Sourcing</a></li>
+      <li><a href="The Edit.html">The Edit</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="GASKINZ Drop 015.html#drop" class="btn">← Back to Drop</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">
+      <span class="live-dot"></span>
+      Sourcing Service — Open Year-Round
+    </div>
+    <div class="hero-grid">
+      <h1 class="hero-title">We find<br/>the <em>bag</em><span style="color:var(--pink)">.</span></h1>
+      <div class="hero-right">
+        <p>Can't find it in the current drop? Tell us the bag, the era, the colourway, and your budget. We go looking. This is what we do.</p>
+        <div class="hero-steps">
+          <div class="step">
+            <span class="step-num">01 /</span>
+            <span class="step-text"><strong>Describe the dream.</strong> Bag, brand, year, condition, colourway. Be as specific or as vague as you like.</span>
+          </div>
+          <div class="step">
+            <span class="step-num">02 /</span>
+            <span class="step-text"><strong>Give us a budget.</strong> We work to the floor, not above it. No inflated asking prices.</span>
+          </div>
+          <div class="step">
+            <span class="step-num">03 /</span>
+            <span class="step-text"><strong>We get to work.</strong> You'll hear back within 48 hours with options, authentication status, and a price. No obligation.</span>
+          </div>
+          <div class="step">
+            <span class="step-num">04 /</span>
+            <span class="step-text"><strong>Approve and ship.</strong> Fast delivery. The bag is yours.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span>Sourcing@gaskinz.com</span>
+      <span>● 48hr response</span>
+      <span>London-Based · Authenticated · Shipped Fast</span>
+      <span>No find, no fee<span style="color:var(--pink)">.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- FORM SECTION -->
+<section class="form-section">
+  <div class="wrap">
+    <div class="form-grid">
+
+      <!-- ASIDE -->
+      <div class="form-aside">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:14px">The Request Form</div>
+          <h2>Your dream<br/><em>bag</em>, found<span style="color:var(--pink)">.</span></h2>
+        </div>
+        <p>Fill in what you know. We do the rest. Every enquiry goes directly to our sourcing desk — real people, not a bot. We take your budget seriously.</p>
+
+        <div class="aside-stat">
+          <div class="n"><em>48hr</em></div>
+          <div class="lbl">Average response time</div>
+        </div>
+        <div class="aside-stat">
+          <div class="n">94<span style="font-family:var(--sans);font-size:24px;font-weight:400;opacity:.6">%</span></div>
+          <div class="lbl">Requests fulfilled</div>
+        </div>
+        <div class="aside-stat">
+          <div class="n"><em>£0</em></div>
+          <div class="lbl">Fee if we can't find it</div>
+        </div>
+
+        <div class="aside-email">
+          <span class="dot"></span>
+          <span>Sourcing@gaskinz.com</span>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <form class="the-form" id="sourcing-form" action="mailto:Sourcing@gaskinz.com" method="post" enctype="text/plain">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Your Name <span>*</span></label>
+            <input type="text" id="f-name" name="Name" placeholder="First name is fine" required/>
+          </div>
+          <div class="field">
+            <label for="f-email">Email Address <span>*</span></label>
+            <input type="email" id="f-email" name="Email" placeholder="hi@yourname.com" required/>
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="field">
+          <label for="f-bag">Describe the bag <span>*</span></label>
+          <textarea id="f-bag" name="Bag Description" placeholder="e.g. Chanel Classic Flap, medium, black lambskin with gold hardware, circa 1997–2000. Open to quilted caviar. Condition A1 preferred." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Your Budget <span>*</span></label>
+          <div class="budget-row" id="budget-row">
+            <div class="budget-opt" data-v="Under £1,000">Under £1k</div>
+            <div class="budget-opt" data-v="£1,000–£3,000">£1k–£3k</div>
+            <div class="budget-opt" data-v="£3,000–£7,000">£3k–£7k</div>
+            <div class="budget-opt" data-v="£7,000–£15,000">£7k–£15k</div>
+            <div class="budget-opt" data-v="£15,000+">£15k+</div>
+            <div class="budget-opt" data-v="Flexible">Flexible</div>
+          </div>
+          <input type="hidden" id="f-budget" name="Budget"/>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-condition">Condition</label>
+            <select id="f-condition" name="Condition">
+              <option value="">Any condition considered</option>
+              <option value="A1 — Pristine">A1 — Pristine (like new)</option>
+              <option value="A2 — Excellent">A2 — Excellent (light use)</option>
+              <option value="Good — visible wear ok">Good — visible wear ok</option>
+              <option value="Any">Any — I'll assess the photos</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-timeline">Timeline</label>
+            <select id="f-timeline" name="Timeline">
+              <option value="">No rush</option>
+              <option value="ASAP">ASAP — I'm ready now</option>
+              <option value="Within 1 month">Within 1 month</option>
+              <option value="Within 3 months">Within 3 months</option>
+              <option value="Gift — specific date">Gift — I have a specific date</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-notes">Anything else?</label>
+          <textarea id="f-notes" name="Notes" placeholder="Previous purchase history with us, specific hardware preferences, any bags you've already seen and passed on, etc." style="min-height:88px"></textarea>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="form-submit">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <span class="form-note">● No obligation. No spam. We respond within 48 hours.</span>
+            <span class="form-note">Direct line: Sourcing@gaskinz.com</span>
+          </div>
+          <button type="submit" class="btn pink lg" id="submit-btn">Send Request&nbsp;↗</button>
+        </div>
+
+        <!-- Success state -->
+        <div id="form-success" style="display:none;background:var(--noir);color:var(--parch);padding:28px;border-left:3px solid var(--pink)">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px">● Request received.</div>
+          <p style="font-family:var(--serif);font-size:28px;line-height:1.1;letter-spacing:-.01em">We're on it. Expect a response from Sourcing@gaskinz.com within 48 hours.</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="wrap">
+    <h2>The sourcing<br/><em>process</em><span style="color:var(--pink)">.</span></h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-n">01 / Request</div>
+        <div class="how-title">Tell us<br/>everything.</div>
+        <div class="how-body">The more you tell us, the faster we find it. Bag type, era, hardware, colourway, condition, budget. But "black Chanel, under £3k" works too — we've done it before.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-n">02 / Search</div>
+        <div class="how-title">We work<br/>the archive.</div>
+        <div class="how-body">Our sourcing desk runs a network of trusted dealers, private sellers, and authenticated resellers across London, Paris, and Tokyo. We don't post to social media. We go looking.</div>
+      </div>
+      <div class="how-card">
+        <div class="how-n">03 / Deliver</div>
+        <div class="how-title">Authenticated,<br/>shipped fast.</div>
+        <div class="how-body">Every bag we source is authenticated before it ships. You get photos, provenance notes, and a condition report. Approve the bag, pay the price, and it's with you within days. No find, no fee.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-big">Dream<br/><em>bag</em><span class="dot">.</span></div>
+    <div class="footer-meta">
+      <span>GASKINZ © 2026</span>
+      <span>Sourcing@gaskinz.com</span>
+      <span>London · Authenticated · Archived · Shipped</span>
+      <span>No find, no fee<span style="color:var(--pink)">.</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Budget pill selector
+(function() {
+  var opts = document.querySelectorAll('.budget-opt');
+  var hidden = document.getElementById('f-budget');
+  opts.forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      opts.forEach(function(o) { o.classList.remove('active'); });
+      opt.classList.add('active');
+      hidden.value = opt.dataset.v;
+    });
+  });
+})();
+
+// Form submit — show success state instead of opening mailto cold
+(function() {
+  var form = document.getElementById('sourcing-form');
+  var success = document.getElementById('form-success');
+  form.addEventListener('submit', function(e) {
+    // Let mailto fire, then show success
+    setTimeout(function() {
+      success.style.display = 'block';
+      success.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }, 400);
+  });
+})();
+</script>
+</body>
+</html>
