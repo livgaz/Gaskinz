@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GASKINZ — Drop 015</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<script src="image-slot.js"></script>
+<style>
+:root {
+  --noir:#0A0A0B; --noir-2:#16161A; --noir-3:#22222A;
+  --parch:#F2ECDF; --parch-2:#E8E0CE; --parch-3:#D9CFB6;
+  --ink:#1A1A1F;
+  --pink:#f694b6; --pink-glow:#f8afc8;
+  --serif:"Instrument Serif",Georgia,serif;
+  --sans:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --rule:rgba(10,10,11,.12);
+  --rule-inv:rgba(242,236,223,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--parch);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--pink);color:var(--parch)}
+button{cursor:pointer;font-family:var(--sans)}
+a{color:inherit;text-decoration:none}
+
+/* --- Layout --- */
+.wrap{max-width:1440px;margin:0 auto;padding:0 48px}
+@media(max-width:768px){.wrap{padding:0 20px}}
+
+/* --- Ticker --- */
+.ticker{background:var(--noir);color:var(--parch);overflow:hidden;white-space:nowrap;padding:11px 0}
+.ticker-track{display:inline-flex;gap:40px;animation:tick 50s linear infinite;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.ticker-track span{display:inline-flex;gap:40px}
+.up{color:var(--pink-glow)} .flat{opacity:.45}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* --- Nav --- */
+.site-nav{position:sticky;top:0;z-index:100;background:var(--parch);border-bottom:1px solid var(--rule)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:15px 48px;gap:24px}
+.nav-logo{font-family:var(--serif);font-size:26px;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.nav-logo em{font-style:italic}
+.nav-logo .dot{color:var(--pink)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.65;transition:opacity .15s}
+.nav-links a:hover{opacity:1;color:var(--pink)}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.live-pill{font-family:var(--mono);font-size:12px;letter-spacing:.1em;display:flex;align-items:center;gap:8px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--pink);animation:pulse 1.4s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.7);opacity:.5}}
+@media(max-width:900px){.nav-links{display:none}.nav-inner{padding:14px 20px}}
+
+/* --- Buttons --- */
+.btn{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:12px 20px;border-radius:999px;border:1.5px solid var(--noir);background:var(--noir);color:var(--parch);display:inline-flex;align-items:center;gap:8px;transition:transform .15s,background .15s,color .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.pink{background:var(--pink);border-color:var(--pink);color:var(--noir)}
+.btn.pink:hover{background:var(--pink-glow);border-color:var(--pink-glow)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn.ghost:hover{background:var(--ink);color:var(--parch);border-color:var(--ink)}
+.btn.sm{padding:9px 14px;font-size:11px}
+
+/* --- Hero --- */
+.hero{background:var(--noir);color:var(--parch);padding:72px 0 0;overflow:hidden}
+.drop-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start}
+.hero-title{font-family:var(--serif);font-size:clamp(72px,13vw,196px);line-height:.88;letter-spacing:-.035em;font-weight:400}
+.hero-title em{font-style:italic;color:var(--pink)}
+.hero-aside{max-width:360px;display:flex;flex-direction:column;gap:18px;padding-top:8px}
+.hero-aside p{font-size:15px;line-height:1.55;opacity:.78}
+.hero-meta{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.5;display:flex;flex-direction:column;gap:5px}
+.cdown-row{display:flex;gap:20px;margin-top:6px}
+.cdown-unit{display:flex;flex-direction:column}
+.cdown-num{font-family:var(--serif);font-size:52px;line-height:.9;letter-spacing:-.02em}
+.cdown-sep{font-family:var(--serif);font-size:40px;line-height:.9;opacity:.3;align-self:flex-end;padding-bottom:4px}
+.cdown-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;opacity:.45;margin-top:5px}
+.hero-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule-inv);margin-top:48px;padding:14px 0;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.5;flex-wrap:wrap;gap:10px}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr}.hero-aside{max-width:100%}}
+
+/* --- Stats bar --- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rule)}
+.stat{padding:26px 30px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:5px}
+.stat:last-child{border-right:none}
+.stat.dark{background:var(--noir);color:var(--parch)}
+.stat-role{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+.stat-role.p{color:var(--pink);opacity:1}
+.stat-n{font-family:var(--serif);font-size:52px;line-height:.9;letter-spacing:-.02em}
+.stat-n em{color:var(--pink);font-style:italic}
+.stat-sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.5}
+@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--rule)}}
+
+/* --- Drop section --- */
+.drop-section{padding:56px 0 88px}
+.drop-head{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:18px;border-bottom:1px solid var(--rule);margin-bottom:28px;gap:16px;flex-wrap:wrap}
+.drop-head h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,50px);letter-spacing:-.015em;line-height:.98;font-weight:400}
+.drop-head h2 em{font-style:italic;color:var(--pink)}
+.filters{display:flex;gap:7px;flex-wrap:wrap}
+.f-btn{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink);transition:all .15s;cursor:pointer}
+.f-btn:hover,.f-btn.on{background:var(--noir);color:var(--parch);border-color:var(--noir)}
+
+/* --- Lot grid --- */
+.lot-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:start}
+.col-8{grid-column:span 8}.col-4{grid-column:span 4}
+.col-3{grid-column:span 3}.col-4b{grid-column:span 4}
+.stack{display:flex;flex-direction:column;gap:18px}
+@media(max-width:1100px){
+  .col-8,.col-4{grid-column:span 12}
+  .col-3{grid-column:span 6}
+  .col-4b{grid-column:span 6}
+  .stack{flex-direction:row}
+}
+@media(max-width:640px){
+  .col-3,.col-4b{grid-column:span 12}
+  .stack{flex-direction:column}
+}
+
+/* --- Lot card --- */
+.lot{background:var(--parch-2);border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.lot:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(10,10,11,.09)}
+.lot.dim{opacity:.58}
+.lot .img{position:relative;overflow:hidden}
+.lot .img image-slot{width:100%;height:100%;display:block}
+.lot .img.r43{aspect-ratio:16/10}
+.lot .img.r45{aspect-ratio:4/5}
+.badge{position:absolute;top:11px;left:11px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:999px;display:flex;align-items:center;gap:7px;z-index:2}
+.badge.live{background:var(--pink);color:var(--noir)}
+.badge.live .b-dot{width:5px;height:5px;border-radius:50%;background:var(--noir);animation:pulse 1.4s infinite}
+.badge.hold{background:var(--noir);color:var(--parch)}
+.badge.sold{background:var(--ink);color:var(--parch)}
+.lot-n{position:absolute;top:11px;right:11px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;background:rgba(242,236,223,.93);border:1px solid var(--rule);padding:5px 10px;z-index:2}
+.lot-info{padding:15px 17px 18px;display:flex;flex-direction:column;gap:5px;flex:1}
+.lot-sku{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+.lot-name{font-family:var(--serif);font-size:21px;line-height:1.05;letter-spacing:-.008em;margin-top:3px}
+.lot-name em{font-style:italic}
+.lot.featured .lot-name{font-size:32px}
+.lot-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.lot-tag{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--rule);padding:4px 8px;border-radius:999px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:11px;padding-top:11px;border-top:1px solid var(--rule)}
+.price{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.02em}
+.price del{opacity:.38;font-weight:400;font-size:12px;margin-right:4px}
+.roi{font-family:var(--mono);font-size:11px;color:var(--pink);letter-spacing:.08em}
+.roi.flat{color:var(--ink);opacity:.4}
+.lot-acts{display:flex;gap:7px;margin-top:11px}
+.lot-acts .btn{flex:1;justify-content:center}
+.sold-bar{background:var(--ink);color:var(--parch);padding:11px 17px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-align:center;opacity:.6}
+
+/* --- Waitlist --- */
+.waitlist{background:var(--noir);color:var(--parch);padding:80px 0}
+.wl-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.wl-title{font-family:var(--serif);font-size:clamp(38px,5vw,68px);line-height:.94;letter-spacing:-.02em;font-weight:400}
+.wl-title em{font-style:italic;color:var(--pink)}
+.wl-form{display:flex;flex-direction:column;gap:13px}
+.wl-form p{font-size:15px;line-height:1.5;opacity:.72}
+.wl-row{display:flex;gap:10px}
+.wl-input{flex:1;background:transparent;border:1px solid var(--rule-inv);border-radius:999px;padding:13px 20px;color:var(--parch);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .15s}
+.wl-input::placeholder{opacity:.38}
+.wl-input:focus{border-color:var(--pink)}
+.wl-note{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;opacity:.38}
+@media(max-width:768px){.wl-inner{grid-template-columns:1fr;gap:40px}.wl-row{flex-direction:column}}
+
+/* --- Footer --- */
+footer{background:var(--noir-2);color:var(--parch);border-top:1px solid var(--rule-inv);padding:56px 0 36px}
+.footer-big{font-family:var(--serif);font-size:clamp(64px,11vw,192px);line-height:.88;letter-spacing:-.04em;font-weight:400}
+.footer-big em{font-style:italic}
+.footer-big .dot{color:var(--pink)}
+.footer-meta{display:flex;justify-content:space-between;border-top:1px solid var(--rule-inv);margin-top:40px;padding-top:20px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.5;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>
+      <span class="up">▲ LOT 01&ensp;$4,820&ensp;+14.2%</span>
+      <span class="flat">— LOT 02&ensp;$9,200&ensp;0.0%</span>
+      <span class="up">▲ LOT 07&ensp;$5,100&ensp;+18.9%</span>
+      <span class="up">▲ DROP 014 FINAL INDEX +22.4%</span>
+      <span class="flat">— LOT 05 HOLD&ensp;·&ensp;16.4 MO AVG</span>
+      <span class="up">▲ AUTH &lt; 36HRS&ensp;·&ensp;OVERNIGHT SHIP</span>
+      <span class="up">▲ SPRING ARCHIVE · 10 LOTS</span>
+    </span>
+    <span>
+      <span class="up">▲ LOT 01&ensp;$4,820&ensp;+14.2%</span>
+      <span class="flat">— LOT 02&ensp;$9,200&ensp;0.0%</span>
+      <span class="up">▲ LOT 07&ensp;$5,100&ensp;+18.9%</span>
+      <span class="up">▲ DROP 014 FINAL INDEX +22.4%</span>
+      <span class="flat">— LOT 05 HOLD&ensp;·&ensp;16.4 MO AVG</span>
+      <span class="up">▲ AUTH &lt; 36HRS&ensp;·&ensp;OVERNIGHT SHIP</span>
+      <span class="up">▲ SPRING ARCHIVE · 10 LOTS</span>
+    </span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Gaskin<em>z</em><span class="dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#drop">The Drop</a></li>
+      <li><a href="#waitlist">Waitlist</a></li>
+      <li><a href="Sourcing.html">Sourcing</a></li>
+      <li><a href="The Edit.html">The Edit</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="live-pill">
+        <div class="live-dot"></div>
+        <span style="font-family:var(--mono);font-size:12px;letter-spacing:.1em">CLOSES&nbsp;<span id="cd-inline" style="color:var(--pink)">72:00:00</span></span>
+      </div>
+      <a href="#drop" class="btn pink">ENTER DROP 01 ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="drop-eyebrow" style="color: rgba(252, 120, 166, 0.86)">
+      <span class="live-dot"></span>
+      Drop No. 01 
+    </div>
+    <div class="hero-grid">
+      <h1 class="hero-title">We're<br/>SOOOO<br/>back<em></em><span style="color:rgb(247, 148, 182)">.</span></h1>
+      <div class="hero-aside">
+        <p>Ten archival lots — lambskin, croc, python, suede — authenticated and priced at fair-market floor. The bags that hold value and the bags that make you look like you know something.</p>
+        <div class="hero-meta">
+          <span>10 Archival Lots · SKU-Verified</span>
+          <span>Authentication &lt; 36 hrs</span>
+          <span>Fast Shipping · London-Based</span>
+        </div>
+        <div class="cdown-row">
+          <div class="cdown-unit">
+            <span class="cdown-num" id="cd-h">72</span>
+            <span class="cdown-lbl">hours</span>
+          </div>
+          <span class="cdown-sep">:</span>
+          <div class="cdown-unit">
+            <span class="cdown-num" id="cd-m">00</span>
+            <span class="cdown-lbl">min</span>
+          </div>
+          <span class="cdown-sep">:</span>
+          <div class="cdown-unit">
+            <span class="cdown-num" id="cd-s">00</span>
+            <span class="cdown-lbl">sec</span>
+          </div>
+        </div>
+        <a href="#drop" class="btn pink" style="justify-content:center;margin-top:6px">Shop the Drop&nbsp;↗</a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span>Drop 015 · Spring 2026</span>
+      <span>● Pink = Live Data</span>
+      <span>NYC · Authenticated · Archived</span>
+      <span>Floor Index&nbsp;<span style="color:var(--pink-glow)">▲ 14.2% YTD</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats" id="index">
+  <div class="stat">
+    <div class="stat-role">Reseller Index · Spring '26</div>
+    <div class="stat-n"><em><span style="color:rgb(248, 148, 182)">+14.2%</span></em></div>
+    <div class="stat-sub">30-day rolling avg</div>
+  </div>
+  <div class="stat">
+    <div class="stat-role">Lots Available</div>
+    <div class="stat-n">10</div>
+    <div class="stat-sub">archival lots</div>
+  </div>
+  <div class="stat">
+    <div class="stat-role">Median Hold</div>
+    <div class="stat-n">9.3<span style="font-size:24px;font-family:var(--sans);font-weight:400;opacity:.7"> mo</span></div>
+    <div class="stat-sub">Q1 2026 cohort</div>
+  </div>
+  <div class="stat dark">
+    <div class="stat-role p">● Live · Asking Price</div>
+    <div class="stat-n"><em><span style="color:rgb(248, 148, 182)">$9,200</span></em></div>
+    <div class="stat-sub" style="color:var(--parch)">Lot 02 · Croc Top-Handle</div>
+  </div>
+</div>
+
+<!-- DROP GRID -->
+<section class="drop-section" id="drop">
+  <div class="wrap">
+    <div class="drop-head">
+      <h2>Drop 01 — <em><span style="color:rgb(247, 148, 182)">10 Lots</span></em></h2>
+      <div class="filters">
+        <button class="f-btn on" data-f="all">All (10)</button>
+        <button class="f-btn" data-f="live">Available (10)</button>
+        <button class="f-btn" data-f="sold">Sold (0)</button>
+      </div>
+    </div>
+
+    <div class="lot-grid">
+
+      <!-- ── ROW 1: LOT 01 featured + LOTS 02 & 03 stacked ── -->
+
+      <div class="col-8" data-s="live">
+        <div class="lot featured">
+          <div class="img r43">
+            <image-slot id="lot-01" placeholder="Lot 01 — hero bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 01 · 015</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-01</span><span>1997 · Lambskin</span></div>
+            <div class="lot-name">The Lambskin <em>Mini</em></div>
+            <div class="lot-tags">
+              <span class="lot-tag">Condition A1</span>
+              <span class="lot-tag">Authenticated</span>
+              <span class="lot-tag">Hold 9.3 mo avg</span>
+              <span class="lot-tag">Overnight Ship</span>
+            </div>
+            <div class="price-row">
+              <div class="price">$4,820</div>
+              <div class="roi">▲ 14.2% · Floor Index</div>
+            </div>
+            <div class="lot-acts">
+              <button class="btn pink sm">Buy Now&nbsp;↗</button>
+              <button class="btn ghost sm">+ Watch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 stack">
+
+        <div data-s="live" style="flex:1">
+          <div class="lot">
+            <div class="img r45">
+              <image-slot id="lot-02" placeholder="Lot 02 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+              <div class="badge live"><span class="b-dot"></span>Live</div>
+              <div class="lot-n">Lot 02</div>
+            </div>
+            <div class="lot-info">
+              <div class="lot-sku"><span>SKU-Gz-015-02</span><span>2003</span></div>
+              <div class="lot-name">The Croc <em>Top-Handle</em></div>
+              <div class="lot-tags"><span class="lot-tag">Super · Croc</span><span class="lot-tag">▲ 22.1%</span></div>
+              <div class="price-row">
+                <div class="price">$9,200</div>
+                <div class="roi">▲ 22.1%</div>
+              </div>
+              <div class="lot-acts"><button class="btn sm">Buy Now&nbsp;↗</button><button class="btn ghost sm">Watch</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-s="live" style="flex:1">
+          <div class="lot">
+            <div class="img r45">
+              <image-slot id="lot-03" placeholder="Lot 03 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+              <div class="badge live"><span class="b-dot"></span>Live</div>
+              <div class="lot-n">Lot 03</div>
+            </div>
+            <div class="lot-info">
+              <div class="lot-sku"><span>SKU-Gz-015-03</span><span>1989</span></div>
+              <div class="lot-name">The Suede <em>Hobo</em></div>
+              <div class="lot-tags"><span class="lot-tag">A2 · Suede</span></div>
+              <div class="price-row">
+                <div class="price">$2,140</div>
+                <div class="roi">▲ Est. 9.2%</div>
+              </div>
+              <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /stack -->
+
+      <!-- ── ROW 2: LOTS 04–07 (3-cols each) ── -->
+
+      <div class="col-3" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-04" placeholder="Lot 04 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 04</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-04</span><span>2001</span></div>
+            <div class="lot-name">The Patent <em>Tote</em></div>
+            <div class="lot-tags"><span class="lot-tag">A1 · Patent</span></div>
+            <div class="price-row">
+              <div class="price">$3,680</div>
+              <div class="roi">▲ 11.8%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-05" placeholder="Lot 05 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 05</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-05</span><span>1994</span></div>
+            <div class="lot-name">The Quilted <em>Shoulder</em></div>
+            <div class="lot-tags"><span class="lot-tag">Super · Quilted</span></div>
+            <div class="price-row">
+              <div class="price">$6,400</div>
+              <div class="roi">▲ Est. 8.1%</div>
+            </div>
+            <div class="lot-acts"><button class="btn ghost sm" style="flex:1;justify-content:center">+ Waitlist</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-06" placeholder="Lot 06 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 06</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-06</span><span>2008</span></div>
+            <div class="lot-name">The Calf <em>Satchel</em></div>
+            <div class="lot-tags"><span class="lot-tag">A1 · Calf</span></div>
+            <div class="price-row">
+              <div class="price">$2,900</div>
+              <div class="roi">▲ 7.2%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-07" placeholder="Lot 07 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 07</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-07</span><span>1999</span></div>
+            <div class="lot-name">The Python <em>Clutch</em></div>
+            <div class="lot-tags"><span class="lot-tag">A2 · Python</span></div>
+            <div class="price-row">
+              <div class="price">$5,100</div>
+              <div class="roi">▲ 18.9%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ROW 3: LOTS 08–10 (4-cols each) ── -->
+
+      <div class="col-4b" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-08" placeholder="Lot 08 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 08</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-08</span><span>2005</span></div>
+            <div class="lot-name">The Box <em>Bag</em></div>
+            <div class="lot-tags"><span class="lot-tag">Super · Calf</span><span class="lot-tag">▲ 13.5%</span></div>
+            <div class="price-row">
+              <div class="price">$7,800</div>
+              <div class="roi">▲ 13.5%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button><button class="btn ghost sm">Watch</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4b" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-09" placeholder="Lot 09 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 09</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-09</span><span>1992</span></div>
+            <div class="lot-name">The Woven <em>Market</em></div>
+            <div class="lot-tags"><span class="lot-tag">A1 · Woven</span></div>
+            <div class="price-row">
+              <div class="price">$1,840</div>
+              <div class="roi">▲ 5.8%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4b" data-s="live">
+        <div class="lot">
+          <div class="img r45">
+            <image-slot id="lot-10" placeholder="Lot 10 — bag photo" shape="rect" style="width:100%;height:100%;display:block"></image-slot>
+            <div class="badge live"><span class="b-dot"></span>Live</div>
+            <div class="lot-n">Lot 10</div>
+          </div>
+          <div class="lot-info">
+            <div class="lot-sku"><span>SKU-Gz-015-10</span><span>2000</span></div>
+            <div class="lot-name">The Newsboy <em>Bucket</em></div>
+            <div class="lot-tags"><span class="lot-tag">A2 · Canvas</span></div>
+            <div class="price-row">
+              <div class="price">$3,120</div>
+              <div class="roi">▲ 9.1%</div>
+            </div>
+            <div class="lot-acts"><button class="btn sm" style="flex:1;justify-content:center">Buy Now&nbsp;↗</button></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /lot-grid -->
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="wrap">
+    <div class="wl-inner">
+      <div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:14px">Drop 016 — Autumn Archive</div>
+        <h2 class="wl-title">Don't miss<br/>the next<em> one</em><span style="color:var(--pink)">.</span></h2>
+        <p style="margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.4">10 lots · Waitlist opens Jun 1</p>
+      </div>
+      <div class="wl-form">
+        <p>Waitlist priority goes to early sign-ups. You'll get one email when the Drop goes live, and one when a lot sells out. That's&nbsp;it.</p>
+        <div class="wl-row">
+          <input class="wl-input" type="email" placeholder="hi@yourname.com"/>
+          <button class="btn pink">Join&nbsp;↗</button>
+        </div>
+        <span class="wl-note">● No spam. One email per drop. Unsubscribe anytime.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-big">Hold or<br/><em>flip</em><span class="dot">.</span></div>
+    <div class="footer-meta">
+      <span>GASKINZ © 2026</span>
+      <span>● Reactive Pink: Live</span>
+      <span>LONDON · AUTHENTICATED · ARCHIVED · SHIPPED</span>
+      <span>Drop 01 · The Spring Archive</span>
+    </div>
+  </div>
+</footer>
+
+<!-- TWEAKS ROOT -->
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "dropNumber": "01",
+  "dropName": "",
+  "dropStatus": "preview",
+  "showROI": false,
+  "accentColor": "#f694b6"
+}/*EDITMODE-END*/;
+
+function TweaksApp() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  React.useEffect(() => {
+    document.documentElement.style.setProperty('--pink', t.accentColor);
+    document.documentElement.style.setProperty('--pink-glow', t.accentColor + 'cc');
+  }, [t.accentColor]);
+
+  React.useEffect(() => {
+    document.querySelectorAll('.roi').forEach(el => {
+      el.style.display = t.showROI ? '' : 'none';
+    });
+  }, [t.showROI]);
+
+  return (
+    <TweaksPanel>
+      <TweakSection label="Drop">
+        <TweakText id="dropNumber" label="Drop No." value={t.dropNumber} onChange={v => setTweak('dropNumber', v)} />
+        <TweakText id="dropName" label="Drop Name" value={t.dropName} onChange={v => setTweak('dropName', v)} />
+        <TweakSelect
+          id="dropStatus"
+          label="Status"
+          options={['live', 'preview', 'closed']}
+          value={t.dropStatus}
+          onChange={v => setTweak('dropStatus', v)}
+        />
+      </TweakSection>
+      <TweakSection label="Display">
+        <TweakToggle id="showROI" label="Show ROI %" value={t.showROI} onChange={v => setTweak('showROI', v)} />
+        <TweakColor
+          id="accentColor"
+          label="Reactive Color"
+          options={['#f694b6','#e8305a','#FF6B2B','#A855F7']}
+          value={t.accentColor}
+          onChange={v => setTweak('accentColor', v)}
+        />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
+</script>
+
+<script>
+/* Countdown */
+(function() {
+  var target = new Date('2026-05-13T12:00:00-05:00');
+  function tick() {
+    var diff = Math.max(0, target - new Date());
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var p = function(n) { return String(n).padStart(2,'0'); };
+    var hEl = document.getElementById('cd-h');
+    var mEl = document.getElementById('cd-m');
+    var sEl = document.getElementById('cd-s');
+    var iEl = document.getElementById('cd-inline');
+    if (hEl) hEl.textContent = p(h);
+    if (mEl) mEl.textContent = p(m);
+    if (sEl) sEl.textContent = p(s);
+    if (iEl) iEl.textContent = p(h) + ':' + p(m) + ':' + p(s);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* Filter */
+(function() {
+  var btns = document.querySelectorAll('.f-btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      var f = btn.dataset.f;
+      /* show/hide column wrappers */
+      document.querySelectorAll('.lot-grid [data-s]').forEach(function(col) {
+        var show = f === 'all' || col.dataset.s === f;
+        col.style.display = show ? '' : 'none';
+      });
+      /* also handle the stacked inner wrappers */
+      document.querySelectorAll('.stack [data-s]').forEach(function(item) {
+        var show = f === 'all' || item.dataset.s === f;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
